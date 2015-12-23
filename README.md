@@ -27,6 +27,7 @@ Each example has the list comprehension itself included as a function, that can 
  * Dedupe Dict-List: deduplicates a list of dictionaries using a subset of keys in the dictionaries.
  * Flatten List: the above example that flattens a list one level
  * Split-Strip-Coerce: parses a delimited string into a list with supported types of int, float and str.
+ * Dict Pivot: pivots a dictionary that contains a list along that axis
  
 Usage
 =====

@@ -5,8 +5,8 @@ Deduplicates a list of json blobs based on just certain keys (in this case ignor
 __author__ = 'willmcginnis'
 
 
-def dedupe_dictlist(input, keys):
-    return [v for _, v in {'_'.join([str(d.get(k, '')) for k in keys]): d for d in input}.items()]
+def dedupe_dictlist(x_in, keys):
+    return [v for _, v in {'_'.join([str(d.get(k, '')) for k in keys]): d for d in x_in}.items()]
 
 if __name__ == '__main__':
     dl = [
