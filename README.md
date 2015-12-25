@@ -28,7 +28,8 @@ Each example has the list comprehension itself included as a function, that can 
  * Flatten List: the above example that flattens a list one level
  * Split-Strip-Coerce: parses a delimited string into a list with supported types of int, float and str.
  * Dict Pivot: pivots a dictionary that contains a list along that axis
- 
+ * Get Files: a generator comprehension that returns a generator of filenames with an extension downstream of a directory
+
 Usage
 =====
 
