@@ -36,7 +36,7 @@ def get_files(x_in, extension):
     :param extension: the extension to search for
     :return:
     """
-    return (os.path.join(root, file) for root, dir, files in os.walk(x_in) for file in files if file.endswith(extension))
+    return (os.path.join(root, file) for root, _, files in os.walk(x_in) for file in files if file.endswith(extension))
 
 if __name__ == '__main__':
     dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

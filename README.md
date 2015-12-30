@@ -48,3 +48,8 @@ License
 =======
 
 BSD 3-clause license
+
+Contributing
+============
+
+Have an abstruse or useful list/dict/set comprehension? Give me a pull request.
