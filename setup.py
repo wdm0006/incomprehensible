@@ -28,5 +28,8 @@ setup(
     include_package_data=True,
     author='Will McGinnis',
     install_requires=[],
+    extras_require={
+        'test': ['pytest'],
+    },
     author_email='will@pedalwrencher.com'
 )
