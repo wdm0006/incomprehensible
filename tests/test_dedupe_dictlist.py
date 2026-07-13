@@ -28,5 +28,18 @@ def test_missing_key_treated_as_empty_string():
     assert dedupe_dictlist(rows, keys=["A"]) == [{"A": "x", "n": 1}, {"n": 3}]
 
 
+def test_composite_key_boundaries_are_preserved():
+    # ('a_b', 'c') and ('a', 'b_c') are distinct composite identities. A '_'-joined
+    # key would collapse both to "a_b_c" and drop a row; a tuple key keeps them apart.
+    rows = [
+        {"A": "a_b", "B": "c", "id": 1},
+        {"A": "a", "B": "b_c", "id": 2},
+    ]
+    assert dedupe_dictlist(rows, keys=["A", "B"]) == [
+        {"A": "a_b", "B": "c", "id": 1},
+        {"A": "a", "B": "b_c", "id": 2},
+    ]
+
+
 def test_empty_input():
     assert dedupe_dictlist([], keys=["A"]) == []
