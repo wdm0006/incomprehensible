@@ -14,10 +14,14 @@ def test_finds_matching_files_recursively(tmp_path):
 
 def test_non_matching_extensions_excluded(tmp_path):
     (tmp_path / "keep.py").write_text("")
+    (tmp_path / "spy").write_text("")
+    (tmp_path / "numpy").write_text("")
+    (tmp_path / "UPPER.PY").write_text("")
     (tmp_path / "skip.md").write_text("")
     (tmp_path / "skip.txt").write_text("")
 
     assert set(get_files(str(tmp_path), "py")) == {str(tmp_path / "keep.py")}
+    assert set(get_files(str(tmp_path), ".py")) == {str(tmp_path / "keep.py")}
 
 
 def test_returns_a_lazy_generator(tmp_path):
