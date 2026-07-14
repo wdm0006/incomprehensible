@@ -32,7 +32,7 @@ def dedupe_dictlist(x_in, keys):
     :param keys:
     :return:
     """
-    return [v for _, v in {'_'.join([str(d.get(k, '')) for k in keys]): d for d in x_in}.items()]
+    return [v for _, v in {tuple(str(d.get(k, '')) for k in keys): d for d in x_in}.items()]
 
 if __name__ == '__main__':
     dl = [
