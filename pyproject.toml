@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "incomprehensible"
+version = "0.0.1"
+description = "A collection of list comprehensions"
+readme = "README.md"
+license = { text = "BSD" }
+authors = [
+    { name = "Will McGinnis", email = "will@pedalwrencher.com" },
+]
+keywords = ["python", "list", "comprehensions"]
+requires-python = ">=3.12"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+]
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.urls]
+Homepage = "https://github.com/wdm0006/incomprehensible"
+
+[tool.setuptools.packages.find]
+exclude = ["tests*"]

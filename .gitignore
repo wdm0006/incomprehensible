@@ -60,4 +60,6 @@ docs/_build/
 # PyBuilder
 target/
 
-
+# uv
+.venv/
+uv.lock
