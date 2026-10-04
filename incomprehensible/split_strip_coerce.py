@@ -21,13 +21,8 @@ def _coerce(y):
 def split_strip_coerce(x_in, delimiter):
     """
 
-    Before:
-
-    >>>'2, red, 3.2, green'
-
-    After:
-
-    >>>[2, 'red', 3.2, 'green']
+    >>> split_strip_coerce('2, red, 3.2, green', ',')
+    [2, 'red', 3.2, 'green']
 
     :param x_in:
     :param delimiter:

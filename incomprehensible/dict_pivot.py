@@ -14,16 +14,8 @@ __author__ = 'willmcginnis'
 def dict_pivot(x_in, key):
     """
 
-    Before:
-
-    >>>{"ts": 123, "A": "A", "B": "B", "sub": [{"C": 10}, {"C": 8}]}
-
-    After:
-
-    >>>[
-    >>>     {'B': 'B', 'A': 'A', 'ts': 123, 'sub.C': 10},
-    >>>     {'B': 'B', 'A': 'A', 'ts': 123, 'sub.C': 8}
-    >>>]
+    >>> dict_pivot({"ts": 123, "A": "A", "B": "B", "sub": [{"C": 10}, {"C": 8}]}, key='sub')
+    [{'ts': 123, 'A': 'A', 'B': 'B', 'sub.C': 10}, {'ts': 123, 'A': 'A', 'B': 'B', 'sub.C': 8}]
 
     :param x_in:
     :param key:

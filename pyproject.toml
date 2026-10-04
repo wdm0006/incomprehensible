@@ -28,3 +28,7 @@ Homepage = "https://github.com/wdm0006/incomprehensible"
 
 [tool.setuptools.packages.find]
 exclude = ["tests*"]
+
+[tool.pytest.ini_options]
+addopts = "--doctest-modules"
+testpaths = ["tests", "incomprehensible"]
