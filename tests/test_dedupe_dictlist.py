@@ -43,3 +43,30 @@ def test_composite_key_boundaries_are_preserved():
 
 def test_empty_input():
     assert dedupe_dictlist([], keys=["A"]) == []
+
+
+def test_int_and_str_with_same_text_are_distinct():
+    rows = [{"id": 1, "v": "int-row"}, {"id": "1", "v": "str-row"}]
+    assert dedupe_dictlist(rows, keys=["id"]) == rows
+
+
+def test_bool_and_str_with_same_text_are_distinct():
+    rows = [{"id": True, "v": "bool"}, {"id": "True", "v": "str"}]
+    assert dedupe_dictlist(rows, keys=["id"]) == rows
+
+
+def test_unhashable_key_values_do_not_raise_and_still_dedupe():
+    rows = [
+        {"id": [1, 2], "v": "first"},
+        {"id": {"a": 1}, "v": "dict"},
+        {"id": [1, 2], "v": "last"},
+    ]
+    assert dedupe_dictlist(rows, keys=["id"]) == [
+        {"id": [1, 2], "v": "last"},
+        {"id": {"a": 1}, "v": "dict"},
+    ]
+
+
+def test_missing_key_shares_identity_with_empty_string():
+    rows = [{"A": "", "n": 1}, {"n": 2}]
+    assert dedupe_dictlist(rows, keys=["A"]) == [{"n": 2}]
