@@ -13,9 +13,17 @@ __author__ = 'willmcginnis'
 
 def _coerce(y):
     if y.isdigit() or (y[:1] == '-' and y[1:].isdigit()):
-        return int(y)
+        try:
+            return int(y)
+        except ValueError:
+            pass
     body = y[1:] if y[:1] == '-' else y
-    return float(y) if body.replace('.', '', 1).isdigit() else y
+    if body.replace('.', '', 1).isdigit():
+        try:
+            return float(y)
+        except ValueError:
+            pass
+    return y
 
 
 def split_strip_coerce(x_in, delimiter):
