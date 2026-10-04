@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           enable-cache: true
-      - name: Run tests against the installed package
+      - name: Run tests against the editable working tree
         run: uv run --with '.[test]' pytest
 
   build:
@@ -35,5 +35,17 @@ jobs:
           enable-cache: true
       - name: Build wheel and source distribution
         run: uv build
+      - name: Verify the built wheel imports
+        run: |
+          uv venv --python 3.12 /tmp/whlcheck
+          uv pip install --python /tmp/whlcheck/bin/python dist/*.whl
+          cd /tmp
+          /tmp/whlcheck/bin/python -I -c "
+          import incomprehensible as inc
+          assert sorted(inc.__all__) == ['dedupe_dictlist', 'dict_pivot', 'flatten_list', 'get_files', 'split_strip_coerce']
+          for name in inc.__all__:
+              assert callable(getattr(inc, name))
+          assert inc.flatten_list([1, [2, 3]]) == [1, 2, 3]
+          "
       - name: List built artifacts
         run: ls -l dist
