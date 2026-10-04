@@ -16,21 +16,13 @@ __author__ = 'willmcginnis'
 def get_files(x_in, extension):
     """
 
-    Before:
-
-    >>>#root directory for this repository
-
-    After:
-
-    >>>[
-    >>>    '~/incomprehensible/setup.py',
-    >>>    '~/incomprehensible/incomprehensible/__init__.py',
-    >>>    '~/incomprehensible/incomprehensible/dedupe_dictlist.py',
-    >>>    '~/incomprehensible/incomprehensible/dict_pivot.py',
-    >>>    '~/incomprehensible/incomprehensible/flatten_list.py',
-    >>>    '~/incomprehensible/incomprehensible/get_files.py',
-    >>>    '~/incomprehensible/incomprehensible/split_strip_coerce.py'
-    >>>]
+    >>> import os, tempfile
+    >>> with tempfile.TemporaryDirectory() as root:
+    ...     os.makedirs(os.path.join(root, 'pkg'))
+    ...     for name in ['a.py', 'notes.txt', os.path.join('pkg', 'b.py')]:
+    ...         open(os.path.join(root, name), 'w').close()
+    ...     sorted(os.path.relpath(p, root) for p in get_files(root, 'py'))
+    ['a.py', 'pkg/b.py']
 
     :param x_in: a directory to start searching under
     :param extension: the extension to search for

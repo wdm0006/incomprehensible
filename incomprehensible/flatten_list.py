@@ -14,13 +14,8 @@ __author__ = 'willmcginnis'
 def flatten_list(x_in):
     """
 
-    Before:
-
-    >>>[1, 2, 3, [4, 'B', 6], {'7': 'A'}]
-
-    After:
-
-    >>>[1, 2, 3, 4, 'B', 6, {'7': 'A'}]
+    >>> flatten_list([1, 2, 3, [4, 'B', 6], {'7': 'A'}])
+    [1, 2, 3, 4, 'B', 6, {'7': 'A'}]
 
     :param x_in:
     :return:

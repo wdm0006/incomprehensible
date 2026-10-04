@@ -13,20 +13,12 @@ __author__ = 'willmcginnis'
 
 def dedupe_dictlist(x_in, keys):
     """
-    Before:
-
-    >>>[
-    >>>    {"ts": 123, "A": "A", "B": "B"},
-    >>>    {"ts": 124, "A": "B", "B": "B"},
-    >>>    {"ts": 125, "A": "A", "B": "B"}
-    >>>]
-
-    After:
-
-    >>>[
-    >>>    {'A': 'B', 'ts': 124, 'B': 'B'},
-    >>>    {'A': 'A', 'ts': 125, 'B': 'B'}
-    >>>]
+    >>> dedupe_dictlist([
+    ...     {"ts": 123, "A": "A", "B": "B"},
+    ...     {"ts": 124, "A": "B", "B": "B"},
+    ...     {"ts": 125, "A": "A", "B": "B"}
+    ... ], keys=['A', 'B'])
+    [{'ts': 125, 'A': 'A', 'B': 'B'}, {'ts': 124, 'A': 'B', 'B': 'B'}]
 
     :param x_in:
     :param keys:
