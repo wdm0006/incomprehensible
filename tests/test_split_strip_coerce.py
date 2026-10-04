@@ -37,3 +37,27 @@ def test_partial_date_falls_back_to_str():
 
 def test_multiple_dots_falls_back_to_str():
     assert split_strip_coerce('1.2.3', ',') == ['1.2.3']
+
+
+def test_superscript_digit_falls_back_to_str():
+    # Regression: '²'.isdigit() is True but int('²') raises ValueError.
+    assert split_strip_coerce('²', ',') == ['²']
+
+
+def test_negative_superscript_digit_falls_back_to_str():
+    assert split_strip_coerce('-²', ',') == ['-²']
+
+
+def test_superscript_in_float_falls_back_to_str():
+    assert split_strip_coerce('2.²', ',') == ['2.²']
+
+
+def test_non_ascii_decimal_digits_still_coerce():
+    result = split_strip_coerce('٣, １２, ٣.٥', ',')
+    assert result == [3, 12, 3.5]
+    assert [type(x) for x in result] == [int, int, float]
+
+
+def test_existing_coercions_unchanged():
+    assert split_strip_coerce('2, red, 3.2, green', ',') == [2, 'red', 3.2, 'green']
+    assert split_strip_coerce('-2, -3.2', ',') == [-2, -3.2]
